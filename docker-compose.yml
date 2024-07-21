@@ -2,20 +2,25 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/voting-system
     depends_on:
       - mongo
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/voting_system
+    volumes:
+      - .:/usr/src/app
+    command: ["pnpm", "start"]
 
   mongo:
     image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db
+      - mongo_data:/data/db
 
 volumes:
-  mongo-data:
+  mongo_data:

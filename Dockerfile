@@ -1,27 +1,24 @@
-# Base image
+# Use the official Node.js image as a base
 FROM node:18
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Create app directory
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
 # Copy package.json and pnpm-lock.yaml
-COPY package*.json ./
-COPY pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
+# Install pnpm and dependencies
+RUN npm install -g pnpm
 RUN pnpm install
 
-# Copy application files
+# Copy the rest of the application code
 COPY . .
 
-# Build the application
+# Build the TypeScript code
 RUN pnpm run build
 
-# Expose port
+# Expose the port that your application will run on
 EXPOSE 5000
 
-# Start the application
+# Command to run the application
 CMD ["pnpm", "start"]

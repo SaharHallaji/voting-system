@@ -1,10 +1,20 @@
 import swaggerSetup from './swagger.ts';
-import express from 'express';
+import mongoose from "mongoose";
+import express, {Express} from "express";
+import dotenv from "dotenv";
 
 
-const app = express();
+const app: Express = express()
 
 
+// Load environment variables from .env file
+dotenv.config();
+
+
+// to get connected to mongodb
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('### connected to MongoDB ###'))
+    .catch(err => console.error(err))
 
 // Swagger Setup
 swaggerSetup(app);
