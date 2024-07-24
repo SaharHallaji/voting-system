@@ -1,10 +1,17 @@
-import { Router } from 'express';
-import { loginUser } from '../controllers/authController';
+import {Router} from 'express';
+import {loginUser} from '../controllers/authController';
 
 const router = Router();
 
 /**
- @swagger
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication related endpoints
+ */
+
+/**
+ * @swagger
  * /login:
   *   post:
   *     summary: Log in a user

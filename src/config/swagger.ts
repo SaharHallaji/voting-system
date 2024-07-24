@@ -13,6 +13,20 @@ const swaggerOptions: Options = {
                 url: 'http://localhost:5000/api',
             },
         ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
+            },
+        ],
     },
     apis: ['./src/routes/*.ts', './src/models/*.ts'], // Paths to files containing OpenAPI definitions
 };

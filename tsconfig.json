@@ -33,6 +33,7 @@
     "./test/**/*.ts"
   ],
   "exclude": ["./coverage", "./dist",
-    "jest.config.js"
+    "jest.config.js",
+    "node_modules"
   ]
 }

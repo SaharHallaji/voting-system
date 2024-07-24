@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import swaggerConfig from './config/swagger.ts';
+import planRoute from "./routes/planRoute.ts";
 
 
 
@@ -25,8 +26,14 @@ mongoose.connect(process.env.MONGODB_URI)
 // Swagger setup
 const swaggerDocs = swaggerJsdoc(swaggerConfig);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
+
 // Routes
 app.use('/api', authRoute);
+app.use('/api', planRoute);
+
+
 
 // Error handler middlewares
 app.use(errorHandler);
