@@ -1,11 +1,8 @@
-import {NextFunction, Request, Response} from 'express';
+import {NextFunction, Response} from 'express';
 import jwt from 'jsonwebtoken';
+import {AuthRequest} from "@interfaces";
+const secret = process.env.JWT_SECRET;
 
-const secret = process.env.JWT_SECRET
-
-interface AuthRequest extends Request {
-    user?: any;
-}
 
 export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(' ')[1];
@@ -15,7 +12,7 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
     }
 
     try {
-        req.user = jwt.verify(token, secret);
+        req.user = jwt.verify(token, secret) as { _id: string; username: string };
         next();
     } catch (error) {
         return res.status(401).json({message: 'Invalid token'});

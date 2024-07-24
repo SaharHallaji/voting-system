@@ -8,6 +8,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import swaggerConfig from './config/swagger.ts';
 import planRoute from "./routes/planRoute.ts";
+import voteRoute from "@/routes/voteRoute.ts";
 
 
 
@@ -32,6 +33,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // Routes
 app.use('/api', authRoute);
 app.use('/api', planRoute);
+app.use('/api', voteRoute);
 
 
 
