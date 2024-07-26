@@ -1,11 +1,13 @@
-import {Request, Response} from 'express';
+import {Response} from 'express';
 import {Plan} from '../models/planModel.ts';
 import {Types} from 'mongoose';
+import {AuthRequest} from "@interfaces";
 
-export const createPlan = async (req: Request, res: Response) => {
-    const {title, description, expirationDate, userId} = req.body;
+export const createPlan = async (req: AuthRequest, res: Response) => {
+    const {title, description, expirationDate} = req.body;
+    const userId = new Types.ObjectId(req.user._id);
 
-    if (!title || !description || !expirationDate || !userId) {
+    if (!title || !description || !expirationDate) {
         return res.status(400).json({message: 'Missing required fields'});
     }
 
@@ -14,8 +16,8 @@ export const createPlan = async (req: Request, res: Response) => {
             title,
             description,
             expirationDate,
-            createdBy: new Types.ObjectId(userId),
-            votes:[]
+            createdBy: userId,
+            votes: []
         });
 
         await newPlan.save();

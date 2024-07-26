@@ -1,6 +1,7 @@
-import { Router } from 'express';
-import { getExpiredPlansResults } from '../controllers/resultController';
-import { authenticate } from '../middlewares/authMiddleware';
+import {Router} from 'express';
+import {getExpiredPlansResults} from '../controllers/resultController';
+import {authenticate} from '../middlewares/authMiddleware';
+import {checkRole} from "@/middlewares/roles.middleware.ts";
 
 const router = Router();
 
@@ -84,6 +85,6 @@ const router = Router();
  */
 
 
-router.get('/plans/expired/results', authenticate, getExpiredPlansResults);
+router.get('/plans/expired/results', authenticate, checkRole(['manager']), getExpiredPlansResults);
 
 export default router;

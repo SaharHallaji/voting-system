@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {voteOnPlan} from '../controllers/voteController';
 import {authenticate} from '../middlewares/authMiddleware';
+import {checkRole} from "@/middlewares/roles.middleware.ts";
 
 const router = Router();
 /**
@@ -120,6 +121,6 @@ const router = Router();
  */
 
 
-router.post('/plans/:planId/vote', authenticate, voteOnPlan);
+router.post('/plans/:planId/vote', authenticate,checkRole(['user']), voteOnPlan);
 
 export default router;

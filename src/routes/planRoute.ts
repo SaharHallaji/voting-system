@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {createPlan} from '../controllers/planController';
 import {authenticate} from "@/middlewares/authMiddleware.ts";
+import {checkRole} from "@/middlewares/roles.middleware.ts";
 
 const router = Router();
 /**
@@ -106,7 +107,6 @@ const router = Router();
  */
 
 
-
-router.post('/plans', authenticate, createPlan);
+router.post('/plans', authenticate, checkRole(['manager']), createPlan);
 
 export default router;
