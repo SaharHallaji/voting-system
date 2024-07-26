@@ -19,7 +19,7 @@ export const createPlan = async (req: Request, res: Response) => {
         });
 
         await newPlan.save();
-        return res.status(201).json("new plan has added to the database");
+        return res.status(201).json({message: "new plan has added to the database"});
     } catch (error) {
         return res.status(500).json({message: 'Server error', error});
     }

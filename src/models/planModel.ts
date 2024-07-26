@@ -2,7 +2,6 @@ import mongoose, {Schema, Document} from 'mongoose';
 
 interface Vote {
     userId: mongoose.Types.ObjectId;
-    username: string;
     voteValue: number;
 }
 
@@ -21,7 +20,6 @@ const planSchema = new Schema<PlanInterface>({
     createdBy: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     votes: [{
         userId: {type: Schema.Types.ObjectId, ref: 'User'},
-        username: {type: String},
         voteValue: {type: Number}
     }]
 }, {timestamps: true});

@@ -8,25 +8,33 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
     const {voteValue} = req.body;
     const userId = new Types.ObjectId(req.user._id);
 
-    if (!voteValue || !Types.ObjectId.isValid(planId)) {
+    const currentDate = new Date();
+
+    if (typeof voteValue !== 'number' || ![1, -1].includes(voteValue)) {
+        return res.status(400).json({ message: 'Invalid vote value. It must be either 1 or -1 as a number.' });
+    }
+
+    if (!Types.ObjectId.isValid(planId)) {
         return res.status(400).json({message: 'Invalid request details'});
     }
 
     try {
         const plan = await Plan.findById(planId);
-
         if (!plan) {
             return res.status(404).json({message: 'Plan not found'});
         }
 
-        const existingVote = plan.votes.find(vote => vote.userId.toString() === userId.toString());
+        if (plan.expirationDate < currentDate)
+            return res.status(410).json({message: 'Plan has expired'});
 
-        if (existingVote) {
-            existingVote.voteValue = voteValue;
+
+        const existingVote = plan.votes.findIndex(vote => vote.userId.toString() === userId.toString());
+
+        if (existingVote !== -1) {
+            plan.votes[existingVote].voteValue = voteValue;
         } else {
             plan.votes.push({
                 userId,
-                username: req.user.username,
                 voteValue
             });
         }
