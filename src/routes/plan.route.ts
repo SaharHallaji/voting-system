@@ -88,6 +88,22 @@ const router = Router();
  *                 message:
  *                   type: string
  *                   example: "No token provided or invalid token"
+ *       401:
+ *         description: Forbidden
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number,
+ *                   example: 403
+ *                 title:
+ *                   type: string
+ *                   example: "Forbidden"
+ *                 message:
+ *                   type: string
+ *                   example: "Access denied"
  *
  *      500:
  *         description: Server error
