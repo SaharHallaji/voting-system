@@ -40,6 +40,10 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
             token
         });
     } catch (error) {
-        next(error);
+        return res.status(500).json({
+            statusCode: 500,
+            title: 'Internal Server Error',
+            message: error.message
+        });
     }
 };

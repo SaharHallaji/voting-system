@@ -32,6 +32,10 @@ export const createPlan = async (req: AuthRequest, res: Response) => {
         });
 
     } catch (error) {
-        return res.status(500).json({message: 'Server error', error});
+        return res.status(500).json({
+            statusCode: 500,
+            title: 'Internal Server Error',
+            message: error.message
+        });
     }
 };
