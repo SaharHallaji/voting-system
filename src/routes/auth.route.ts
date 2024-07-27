@@ -89,7 +89,7 @@ const router = Router();
  *                   example: "Internal Server Error"
  *                 message:
  *                   type: string
- *                   example: "error massage"
+ *                   example: "error message"
  */
 
 
