@@ -14,6 +14,7 @@ import resultRoute from "@/routes/result.route.ts";
 
 
 const app: Express = express()
+
 app.use(bodyParser.json());
 
 // Load environment variables from .env file

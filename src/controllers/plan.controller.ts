@@ -7,6 +7,7 @@ export const createPlan = async (req: AuthRequest, res: Response) => {
     const {title, description, expirationDate} = req.body;
     const userId = new Types.ObjectId(req.user._id);
 
+    // check if the required fields are null.
     if (!title || !description || !expirationDate) {
         return res.status(400).json({
             statusCode: 400,
@@ -16,6 +17,7 @@ export const createPlan = async (req: AuthRequest, res: Response) => {
     }
 
     try {
+        // Make an object to add a new plan with the entered data
         const newPlan = new Plan({
             title,
             description,
@@ -24,7 +26,9 @@ export const createPlan = async (req: AuthRequest, res: Response) => {
             votes: []
         });
 
+        // Save the new plan in database.
         await newPlan.save();
+
         return res.status(201).json({
             statusCode: 201,
             title: "New resources are created.",

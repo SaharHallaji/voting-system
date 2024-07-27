@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import {User} from '../src/models/user.model';
 
 dotenv.config();
-// run with npx ts-node ./scripts/seed.ts  command.
+// run with npx ts-node ./scripts/seed.ts command.
 const users = [
     { first_name: 'Alice', last_name: 'Smith', username: 'aliceSmith', password: 'password123', role: 'manager' },
     { first_name: 'Bob', last_name: 'Johnson', username: 'bobJohnson', password: 'password123', role: 'user' },
