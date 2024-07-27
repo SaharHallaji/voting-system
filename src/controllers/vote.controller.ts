@@ -1,5 +1,5 @@
 import {Response} from 'express';
-import {Plan} from '../models/planModel';
+import {Plan} from '../models/plan.model.ts';
 import {Types} from 'mongoose';
 import {AuthRequest} from '@interfaces';
 

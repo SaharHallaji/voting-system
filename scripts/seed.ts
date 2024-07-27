@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
-import {User} from '../src/models/userModel';
+import {User} from '../src/models/user.model';
 
 dotenv.config();
 // run with npx ts-node ./scripts/seed.ts  command.

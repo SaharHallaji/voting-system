@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Plan } from '../models/planModel';
+import { Plan } from '../models/plan.model.ts';
 
 
 export const getExpiredPlansResults = async (req: Request, res: Response) => {

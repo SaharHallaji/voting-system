@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {createPlan} from '../controllers/planController';
-import {authenticate} from "@/middlewares/authMiddleware.ts";
+import {createPlan} from '../controllers/plan.controller.ts';
+import {authenticate} from "@/middlewares/auth.middleware.ts";
 import {checkRole} from "@/middlewares/roles.middleware.ts";
 
 const router = Router();

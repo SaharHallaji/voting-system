@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {getExpiredPlansResults} from '../controllers/resultController';
-import {authenticate} from '../middlewares/authMiddleware';
+import {getExpiredPlansResults} from '../controllers/result.controller.ts';
+import {authenticate} from '../middlewares/auth.middleware.ts';
 import {checkRole} from "@/middlewares/roles.middleware.ts";
 
 const router = Router();

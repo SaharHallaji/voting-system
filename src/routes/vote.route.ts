@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {voteOnPlan} from '../controllers/voteController';
-import {authenticate} from '../middlewares/authMiddleware';
+import {voteOnPlan} from '../controllers/vote.controller.ts';
+import {authenticate} from '../middlewares/auth.middleware.ts';
 import {checkRole} from "@/middlewares/roles.middleware.ts";
 
 const router = Router();

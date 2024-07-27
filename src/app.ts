@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 import express, {Express} from "express";
 import dotenv from "dotenv";
-import authRoute from "./routes/authRoute.ts";
-import {errorHandler} from "./middlewares/errorHandler.ts";
+import authRoute from "./routes/auth.route.ts";
+import {errorHandler} from "./middlewares/errorHandler.middleware.ts";
 import bodyParser from 'body-parser';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import swaggerConfig from './config/swagger.ts';
-import planRoute from "./routes/planRoute.ts";
-import voteRoute from "@/routes/voteRoute.ts";
-import resultRoute from "@/routes/resultRoute.ts";
+import planRoute from "./routes/plan.route.ts";
+import voteRoute from "@/routes/vote.route.ts";
+import resultRoute from "@/routes/result.route.ts";
 
 
 

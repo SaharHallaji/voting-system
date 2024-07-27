@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import {User} from '../models/userModel.ts';
+import {User} from '../models/user.model.ts';
 import {generateToken} from '../utils/generateToken.ts';
 import {comparePassword} from '../utils/passwordUtils';
 
