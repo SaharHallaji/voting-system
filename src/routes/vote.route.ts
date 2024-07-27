@@ -52,39 +52,6 @@ const router = Router();
  *                 message:
  *                   type: string
  *                   example: "Vote successfully recorded"
- *                 plan:
- *                   type: object
- *                   properties:
- *                     _id:
- *                       type: string
- *                       example: "60c72b2f9b1e8b001c8cfc7d"
- *                     title:
- *                       type: string
- *                       example: "Plan Title"
- *                     description:
- *                       type: string
- *                       example: "Plan description"
- *                     expirationDate:
- *                       type: string
- *                       format: date-time
- *                       example: "2024-12-31T23:59:59Z"
- *                     createdBy:
- *                       type: string
- *                       example: "60c72b2f9b1e8b001c8cfc7c"
- *                     votes:
- *                       type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           userId:
- *                             type: string
- *                             example: "60c72b2f9b1e8b001c8cfc7c"
- *                           username:
- *                             type: string
- *                             example: "user123"
- *                           voteValue:
- *                             type: integer
- *                             example: 1
  *       400:
  *         description: Invalid request details
  *         content:
@@ -92,9 +59,31 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 400
+ *                 title:
+ *                   type: string
+ *                   example: Bad Request
  *                 message:
  *                   type: string
  *                   example: "Invalid request details"
+ *       410:
+ *         description: Gone!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 410
+ *                 title:
+ *                   type: string
+ *                   example: Gone
+ *                 message:
+ *                   type: string
+ *                   example: "Plan has expired"
  *       404:
  *         description: Plan not found
  *         content:
@@ -102,22 +91,64 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 404
+ *                 title:
+ *                   type: string
+ *                   example: "Not found"
  *                 message:
  *                   type: string
  *                   example: "Plan not found"
- *       500:
+ *
+ *       401:
+ *         description: Unauthorized, invalid token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number,
+ *                   example: 401
+ *                 title:
+ *                   type: string
+ *                   example: "Unauthorized"
+ *                 message:
+ *                   type: string
+ *                   example: "No token provided or invalid token"
+ *       403:
+ *         description: Forbidden
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number,
+ *                   example: 403
+ *                 title:
+ *                   type: string
+ *                   example: "Forbidden"
+ *                 message:
+ *                   type: string
+ *                   example: "Access denied"
+ *     500:
  *         description: Server error
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 title:
+ *                   type: string
+ *                   example: "Internal Server Error"
  *                 message:
  *                   type: string
- *                   example: "Server error"
- *                 error:
- *                   type: string
- *                   example: "Error message here"
+ *                   example: "error message"
  */
 
 
