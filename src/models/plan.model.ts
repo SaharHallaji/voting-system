@@ -1,6 +1,6 @@
 import mongoose, {Schema, Document} from 'mongoose';
 
-//interface for votes items
+// interface for votes items
 interface Vote {
     userId: mongoose.Types.ObjectId;
     voteValue: number;
@@ -13,9 +13,10 @@ interface PlanInterface extends Document {
     expirationDate: Date;
     createdBy: mongoose.Schema.Types.ObjectId;
     votes: Vote[];
+    score: number;
 }
 
-//Plan schema
+// Plan schema
 const planSchema = new Schema<PlanInterface>({
     title: {type: String, required: true},
     description: {type: String, required: true},
@@ -24,7 +25,8 @@ const planSchema = new Schema<PlanInterface>({
     votes: [{
         userId: {type: Schema.Types.ObjectId, ref: 'User'},
         voteValue: {type: Number}
-    }]
+    }],
+    score: { type: Number, default: 0 }
 }, {timestamps: true});
 
 export const Plan = mongoose.model<PlanInterface>('Plan', planSchema);

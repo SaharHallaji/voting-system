@@ -10,7 +10,7 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
 
     const currentDate = new Date();
 
-    //Check voteValue to make sure it's either 1 or -1 as a number.
+    // Check voteValue to make sure it's either 1 or -1 as a number.
     if (typeof voteValue !== 'number' || ![1, -1].includes(voteValue)) {
         return res.status(400).json({
             statusCode: 400,
@@ -19,7 +19,7 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
         });
     }
 
-    //Check if the plan id is valid.
+    // Check if the plan id is valid.
     if (!Types.ObjectId.isValid(planId)) {
         return res.status(400).json({
             statusCode: 400,
@@ -29,11 +29,11 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
     }
 
     try {
-        //Find the plan by its id.
+        // Find the plan by its id.
         const plan = await Plan.findById(planId)
             .populate('votes.userId', 'first_name last_name username role');
 
-        //If the plan is null.
+        // If the plan is null.
         if (!plan) {
             return res.status(404).json({
                 statusCode: 404,
@@ -42,7 +42,7 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
             });
         }
 
-        //Check if the plan is expired.
+        // Check if the plan is expired.
         if (plan.expirationDate < currentDate)
             return res.status(410).json({
                 statusCode: 410,
@@ -50,10 +50,10 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
                 message: 'Plan has expired'
             });
 
-        //Check if the user has voted to the plan before.
+        // Check if the user has voted to the plan before.
         const existingVote = plan.votes.findIndex(vote => vote.userId._id.toString() === userId._id.toString());
 
-        //Replace new vote or make new vote object depending on existing vote.
+        // Replace new vote or make new vote object depending on existing vote.
         if (existingVote !== -1) {
             plan.votes[existingVote].voteValue = voteValue;
         } else {
@@ -62,6 +62,9 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
                 voteValue
             });
         }
+
+        // Calculate the new score
+        plan.score = plan.votes.reduce((total, vote) => total + vote.voteValue, 0);
 
         // save the plan.
         await plan.save();

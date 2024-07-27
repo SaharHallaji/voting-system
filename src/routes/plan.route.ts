@@ -88,7 +88,7 @@ const router = Router();
  *                   type: string
  *                   example: "No token provided or invalid token"
  *       403:
- *         description: Forbidden
+ *         description: Forbidden or Invalid format
  *         content:
  *           application/json:
  *             schema:
@@ -99,10 +99,10 @@ const router = Router();
  *                   example: 403
  *                 title:
  *                   type: string
- *                   example: "Forbidden"
+ *                   example: "Forbidden or Invalid format"
  *                 message:
  *                   type: string
- *                   example: "Access denied"
+ *                   example: "Access denied or date format should match ISO 8601 date format. example : 2020-12-31T23:59:59.000Z"
  *       500:
  *         description: Server error
  *         content:

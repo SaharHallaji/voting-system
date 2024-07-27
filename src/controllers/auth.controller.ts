@@ -6,7 +6,7 @@ import {comparePassword} from '../utils/passwordUtils';
 export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
     const {username, password} = req.body;
 
-    //Check if either username or password is null.
+    // Check if either username or password is null.
     if (!(username || password)) return res.status(400).json({
         statusCode: 400,
         title: "Bad request, missing or incorrect credentials",
@@ -15,10 +15,10 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
 
 
     try {
-        //Try to find a user by its username
+        // Try to find a user by its username
         const user = await User.findOne({username});
 
-        //Check if user is null.
+        // Check if user is null.
         if (!user) {
             return res.status(401).json({
                 statusCode: 401,

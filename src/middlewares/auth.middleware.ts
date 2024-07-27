@@ -8,7 +8,7 @@ const secret = process.env.JWT_SECRET;
 export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(' ')[1];
 
-    //check if the token is null.
+    // check if the token is null.
     if (!token) {
         return res.status(401).json({
             statusCode: 401,

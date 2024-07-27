@@ -48,6 +48,9 @@ const router = Router();
  *                         type: string
  *                         format: date-time
  *                         example: "2020-12-31T23:59:59.000Z"
+ *                       score:
+ *                         type: integer
+ *                         example: 2
  *                       createdBy:
  *                         type: object
  *                         properties:

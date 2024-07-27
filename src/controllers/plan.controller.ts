@@ -16,6 +16,20 @@ export const createPlan = async (req: AuthRequest, res: Response) => {
         });
     }
 
+    // Check if the date string matches the regex
+    const iso8601Regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d{3})?Z?$/;
+
+    const dateMatches = iso8601Regex.test(expirationDate)
+
+    if (!dateMatches) {
+        return res.status(403).json({
+            statusCode: 403,
+            title: "Invalid format",
+            message: "date format should match ISO 8601 date format. example : 2020-12-31T23:59:59.000Z"
+        })
+    }
+
+
     try {
         // Make an object to add a new plan with the entered data
         const newPlan = new Plan({
