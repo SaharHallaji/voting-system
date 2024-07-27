@@ -1,9 +1,10 @@
-import {Router} from 'express';
-import {voteOnPlan} from '../controllers/vote.controller.ts';
-import {authenticate} from '../middlewares/auth.middleware.ts';
-import {checkRole} from "@/middlewares/roles.middleware.ts";
+import { Router } from 'express';
+import { voteOnPlan } from '../controllers/vote.controller.ts';
+import { authenticate } from '../middlewares/auth.middleware.ts';
+import { checkRole } from "@/middlewares/roles.middleware.ts";
 
 const router = Router();
+
 /**
  * @swagger
  * /plans/{planId}/vote:
@@ -28,18 +29,10 @@ const router = Router();
  *           schema:
  *             type: object
  *             properties:
- *               userId:
- *                 type: string
- *                 example: "66a0312bc08595f7a6195a53"
- *               username:
- *                 type: string
- *                 example: "bobJohnson"
  *               voteValue:
  *                 type: integer
  *                 example: 1
  *             required:
- *               - userId
- *               - username
  *               - voteValue
  *     responses:
  *       200:
@@ -49,6 +42,12 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 200
+ *                 title:
+ *                   type: string
+ *                   example: "The request was successful"
  *                 message:
  *                   type: string
  *                   example: "Vote successfully recorded"
@@ -64,12 +63,12 @@ const router = Router();
  *                   example: 400
  *                 title:
  *                   type: string
- *                   example: Bad Request
+ *                   example: "Bad Request"
  *                 message:
  *                   type: string
  *                   example: "Invalid request details"
- *       410:
- *         description: Gone!
+ *       401:
+ *         description: Unauthorized, invalid token
  *         content:
  *           application/json:
  *             schema:
@@ -77,13 +76,29 @@ const router = Router();
  *               properties:
  *                 statusCode:
  *                   type: number
- *                   example: 410
+ *                   example: 401
  *                 title:
  *                   type: string
- *                   example: Gone
+ *                   example: "Unauthorized"
  *                 message:
  *                   type: string
- *                   example: "Plan has expired"
+ *                   example: "No token provided or invalid token"
+ *       403:
+ *         description: Forbidden
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 403
+ *                 title:
+ *                   type: string
+ *                   example: "Forbidden"
+ *                 message:
+ *                   type: string
+ *                   example: "Access denied"
  *       404:
  *         description: Plan not found
  *         content:
@@ -100,40 +115,23 @@ const router = Router();
  *                 message:
  *                   type: string
  *                   example: "Plan not found"
- *
- *       401:
- *         description: Unauthorized, invalid token
+ *       410:
+ *         description: Gone! The plan has expired
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
  *                 statusCode:
- *                   type: number,
- *                   example: 401
+ *                   type: number
+ *                   example: 410
  *                 title:
  *                   type: string
- *                   example: "Unauthorized"
+ *                   example: "Gone"
  *                 message:
  *                   type: string
- *                   example: "No token provided or invalid token"
- *       403:
- *         description: Forbidden
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 statusCode:
- *                   type: number,
- *                   example: 403
- *                 title:
- *                   type: string
- *                   example: "Forbidden"
- *                 message:
- *                   type: string
- *                   example: "Access denied"
- *     500:
+ *                   example: "Plan has expired"
+ *       500:
  *         description: Server error
  *         content:
  *           application/json:
@@ -151,7 +149,6 @@ const router = Router();
  *                   example: "error message"
  */
 
-
-router.post('/plans/:planId/vote', authenticate,checkRole(['user']), voteOnPlan);
+router.post('/plans/:planId/vote', authenticate, checkRole(['user']), voteOnPlan);
 
 export default router;

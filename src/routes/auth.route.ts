@@ -35,7 +35,7 @@ const router = Router();
  *                   example: 200
  *                 title:
  *                   type: string
- *                   example: "the request was successful"
+ *                   example: "The request was successful"
  *                 message:
  *                   type: string
  *                   example: "Login successful"
@@ -73,7 +73,7 @@ const router = Router();
  *                   example: "Unauthorized, invalid username or password"
  *                 message:
  *                   type: string
- *                   example: "either username or password is invalid!"
+ *                   example: "Either username or password is invalid!"
  *       500:
  *         description: Server error
  *         content:

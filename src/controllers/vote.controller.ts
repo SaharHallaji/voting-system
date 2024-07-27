@@ -59,7 +59,7 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
         await plan.save();
         return res.status(200).json({
             statusCode: 200,
-            title: "the request was successful",
+            title: "The request was successful",
             message: "Vote successfully recorded"
         });
 

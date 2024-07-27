@@ -27,7 +27,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
             return res.status(401).json({
                 statusCode: 401,
                 title: "Unauthorized, invalid username or password",
-                message: 'either username or password is invalid!'
+                message: 'Either username or password is invalid!'
             });
         }
 
@@ -35,7 +35,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
 
         res.status(200).json({
             statusCode: 200,
-            title: "the request was successful",
+            title: "The request was successful",
             message: 'The user has logged in successfully',
             token
         });

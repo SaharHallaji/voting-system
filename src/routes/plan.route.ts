@@ -1,9 +1,10 @@
-import {Router} from 'express';
-import {createPlan} from '../controllers/plan.controller.ts';
-import {authenticate} from "@/middlewares/auth.middleware.ts";
-import {checkRole} from "@/middlewares/roles.middleware.ts";
+import { Router } from 'express';
+import { createPlan } from '../controllers/plan.controller.ts';
+import { authenticate } from "@/middlewares/auth.middleware.ts";
+import { checkRole } from "@/middlewares/roles.middleware.ts";
 
 const router = Router();
+
 /**
  * @swagger
  * tags:
@@ -53,8 +54,7 @@ const router = Router();
  *                   example: "New resources are created."
  *                 message:
  *                   type: string
- *                   example: "New plan has added to the database"
- *
+ *                   example: "New plan has been added to the database"
  *       400:
  *         description: Bad request, missing required fields
  *         content:
@@ -71,7 +71,6 @@ const router = Router();
  *                 message:
  *                   type: string
  *                   example: "Missing required fields: title, description, expirationDate"
- *
  *       401:
  *         description: Unauthorized, invalid token
  *         content:
@@ -80,7 +79,7 @@ const router = Router();
  *               type: object
  *               properties:
  *                 statusCode:
- *                   type: number,
+ *                   type: number
  *                   example: 401
  *                 title:
  *                   type: string
@@ -96,7 +95,7 @@ const router = Router();
  *               type: object
  *               properties:
  *                 statusCode:
- *                   type: number,
+ *                   type: number
  *                   example: 403
  *                 title:
  *                   type: string
@@ -104,8 +103,7 @@ const router = Router();
  *                 message:
  *                   type: string
  *                   example: "Access denied"
- *
- *      500:
+ *       500:
  *         description: Server error
  *         content:
  *           application/json:
@@ -122,7 +120,6 @@ const router = Router();
  *                   type: string
  *                   example: "error message"
  */
-
 
 router.post('/plans', authenticate, checkRole(['manager']), createPlan);
 
