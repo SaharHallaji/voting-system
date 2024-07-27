@@ -30,6 +30,12 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 200
+ *                 title:
+ *                   type: string
+ *                   example: "the request was successful"
  *                 message:
  *                   type: string
  *                   example: "Login successful"
@@ -43,6 +49,12 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example : 400
+ *                 title:
+ *                   type: string
+ *                   example: "Bad request, missing or incorrect credentials"
  *                 message:
  *                   type: string
  *                   example: "Enter the correct username and password!"
@@ -53,9 +65,15 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 401
+ *                 title:
+ *                   type: string
+ *                   example: "Unauthorized, invalid username or password"
  *                 message:
  *                   type: string
- *                   example: "Invalid username or password!"
+ *                   example: "either username or password is invalid!"
  *       500:
  *         description: Server error
  *         content:
@@ -63,12 +81,15 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
- *                 message:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 title:
  *                   type: string
  *                   example: "Internal Server Error"
- *                 error:
+ *                 message:
  *                   type: string
- *                   example: "Error message here"
+ *                   example: "error massage"
  */
 
 
