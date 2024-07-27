@@ -13,14 +13,26 @@ export const getExpiredPlansResults = async (req: Request, res: Response) => {
             .populate('votes.userId', 'first_name last_name username role');
 
         if (expiredPlans.length === 0) {
-            return res.status(404).json({ message: 'No expired plans found' });
+            return res.status(404).json({
+                statusCode:404,
+                title: "Not Found",
+                message: 'No expired plans found'
+            });
         }
 
         return res.status(200).json({
+            statusCode: 200,
+            title: "OK",
             message: 'Expired plans retrieved successfully',
             plans: expiredPlans
         });
+
+
     } catch (error) {
-        return res.status(500).json({ message: 'Server error', error: error.message });
+        return res.status(500).json({
+            statusCode: 500,
+            title: 'Internal Server Error',
+            message: error.message
+        });
     }
 };
