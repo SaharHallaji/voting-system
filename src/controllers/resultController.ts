@@ -8,7 +8,9 @@ export const getExpiredPlansResults = async (req: Request, res: Response) => {
 
         const expiredPlans = await Plan.find({
             expirationDate: { $lt: currentDate }
-        });
+        })
+            .populate('createdBy', 'first_name last_name username role')
+            .populate('votes.userId', 'first_name last_name username role');
 
         if (expiredPlans.length === 0) {
             return res.status(404).json({ message: 'No expired plans found' });

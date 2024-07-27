@@ -19,7 +19,8 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
     }
 
     try {
-        const plan = await Plan.findById(planId);
+        const plan = await Plan.findById(planId)
+            .populate('votes.userId', 'first_name last_name username role');
         if (!plan) {
             return res.status(404).json({message: 'Plan not found'});
         }
@@ -28,8 +29,8 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
             return res.status(410).json({message: 'Plan has expired'});
 
 
-        const existingVote = plan.votes.findIndex(vote => vote.userId.toString() === userId.toString());
-
+        const existingVote = plan.votes.findIndex(vote => vote.userId._id.toString() === userId._id.toString());
+        console.log(existingVote)
         if (existingVote !== -1) {
             plan.votes[existingVote].voteValue = voteValue;
         } else {
@@ -40,10 +41,7 @@ export const voteOnPlan = async (req: AuthRequest, res: Response) => {
         }
 
         await plan.save();
-        return res.status(200).json({
-            message: 'Vote successfully recorded',
-            plan
-        });
+        return res.status(200).json({message: 'Vote successfully recorded'});
     } catch (error) {
         console.error('Error in voting on plan:', error);
         return res.status(500).json({message: 'Server error', error});
