@@ -88,7 +88,7 @@ const router = Router();
  *                 message:
  *                   type: string
  *                   example: "No token provided or invalid token"
- *       401:
+ *       403:
  *         description: Forbidden
  *         content:
  *           application/json:
