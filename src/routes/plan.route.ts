@@ -36,11 +36,7 @@ const router = Router();
  *               expirationDate:
  *                 type: string
  *                 format: date-time
- *                 example: "2024-12-31T23:59:59Z"
- *               createdBy:
- *                 type: string
- *                 format: uuid
- *                 example: "a4b6c2e7-47a0-4e1a-8c0d-7d6742f8d5e6"
+ *                 example: "2020-12-31T23:59:59.000Z"
  *     responses:
  *       201:
  *         description: Successfully created a new plan
@@ -49,31 +45,16 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
- *                 _id:
- *                   type: string
- *                   example: "60c72b2f9b1e8b001c8cfc7d"
+ *                 statusCode:
+ *                   type: number
+ *                   example: 201
  *                 title:
  *                   type: string
- *                   example: "New Plan Title"
- *                 description:
+ *                   example: "New resources are created."
+ *                 message:
  *                   type: string
- *                   example: "Description of the new plan"
- *                 expirationDate:
- *                   type: string
- *                   format: date-time
- *                   example: "2024-12-31T23:59:59Z"
- *                 createdBy:
- *                   type: string
- *                   format: uuid
- *                   example: "a4b6c2e7-47a0-4e1a-8c0d-7d6742f8d5e6"
- *                 createdAt:
- *                   type: string
- *                   format: date-time
- *                   example: "2024-07-24T15:30:00Z"
- *                 updatedAt:
- *                   type: string
- *                   format: date-time
- *                   example: "2024-07-24T15:30:00Z"
+ *                   example: "New plan has added to the database"
+ *
  *       400:
  *         description: Bad request, missing required fields
  *         content:
@@ -81,9 +62,16 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 400
+ *                 title:
+ *                   type: string
+ *                   example: "Bad request, missing or incorrect credentials"
  *                 message:
  *                   type: string
- *                   example: "Missing required fields"
+ *                   example: "Missing required fields: title, description, expirationDate"
+ *
  *       401:
  *         description: Unauthorized, invalid token
  *         content:
@@ -91,19 +79,32 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number,
+ *                   example: 401
+ *                 title:
+ *                   type: string
+ *                   example: "Unauthorized"
  *                 message:
  *                   type: string
  *                   example: "No token provided or invalid token"
- *       500:
+ *
+ *      500:
  *         description: Server error
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 title:
+ *                   type: string
+ *                   example: "Internal Server Error"
  *                 message:
  *                   type: string
- *                   example: "Server error"
+ *                   example: "error message"
  */
 
 
