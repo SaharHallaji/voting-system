@@ -31,68 +31,81 @@ const router = Router();
  *                   type: string
  *                   example: "Expired plans retrieved successfully"
  *                 plans:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       _id:
- *                         type: string
- *                         example: "60c72b2f9b1e8b001c8cfc7d"
- *                       title:
- *                         type: string
- *                         example: "Plan Title"
- *                       description:
- *                         type: string
- *                         example: "Plan description"
- *                       expirationDate:
- *                         type: string
- *                         format: date-time
- *                         example: "2024-12-31T23:59:59Z"
- *                       createdBy:
- *                         type: string
- *                         example: "60c72b2f9b1e8b001c8cfc7c"
- *                       votes:
- *                         type: array
- *                         items:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         _id:
+ *                           type: string
+ *                           example: 66a2c16d02b36b13c9524641
+ *                         title:
+ *                           type: string
+ *                           example: New Plan Title
+ *                         description:
+ *                           type: string
+ *                           example: Description of the new plan
+ *                         expirationDate:
+ *                           type: string
+ *                           format: date-time
+ *                           example: 2020-12-31T23:59:59.000Z
+ *                         createdBy:
  *                           type: object
  *                           properties:
- *                             userId:
- *                               type: object
- *                               properties:
- *                                 _id:
- *                                   type: string
- *                                   format: uuid
- *                                   example: 66a2c1375aeed87e4f7301db
- *                                 first_name:
- *                                   type: string
- *                                   example: Bob
- *                                 last_name:
- *                                   type: string
- *                                   example: Johnson
- *                                 username:
- *                                   type: string
- *                                   example: bobJohnson
- *                                 role:
- *                                   type: string
- *                                   example: user
- *                             voteValue:
- *                               type: integer
- *                               example: -1
  *                             _id:
  *                               type: string
- *                               format: uuid
- *                               example: 66a43d50ada9a255e341e1f6
- *                       createdAt:
- *                         type: string
- *                         format: date-time
- *                         example: 2024-07-25T21:20:14.877Z
- *                       updatedAt:
- *                         type: string
- *                         format: date-time
- *                         example: 2024-07-27T00:20:55.047Z
- *                       __v:
- *                         type: integer
- *                         example: 41
+ *                               example: 66a2c1375aeed87e4f7301da
+ *                             first_name:
+ *                               type: string
+ *                               example: Alice
+ *                             last_name:
+ *                               type: string
+ *                               example: Smith
+ *                             username:
+ *                               type: string
+ *                               example: aliceSmith
+ *                             role:
+ *                               type: string
+ *                               example: manager
+ *                         votes:
+ *                           type: array
+ *                           items:
+ *                             type: object
+ *                             properties:
+ *                               userId:
+ *                                 type: object
+ *                                 properties:
+ *                                   _id:
+ *                                     type: string
+ *                                     example: 66a2c1375aeed87e4f7301db
+ *                                   first_name:
+ *                                     type: string
+ *                                     example: Bob
+ *                                   last_name:
+ *                                     type: string
+ *                                     example: Johnson
+ *                                   username:
+ *                                     type: string
+ *                                     example: bobJohnson
+ *                                   role:
+ *                                     type: string
+ *                                     example: user
+ *                               voteValue:
+ *                                 type: integer
+ *                                 example: -1
+ *                               _id:
+ *                                 type: string
+ *                                 example: 66a43d50ada9a255e341e1f6
+ *                         createdAt:
+ *                           type: string
+ *                           format: date-time
+ *                           example: 2024-07-25T21:19:41.096Z
+ *                         updatedAt:
+ *                           type: string
+ *                           format: date-time
+ *                           example: 2024-07-26T22:54:14.733Z
+ *                         __v:
+ *                           type: integer
+ *                           example: 21
  *
  *       404:
  *         description: Not Found
